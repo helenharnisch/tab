@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tab</title>
+	<style type="text/css">
+		.tab__nav{
+		    border-bottom: 1px solid #999;
+		    font-size: 0;
+		    height: 60px;
+		    display: table;
+		}
+		.tab__nav__link{
+		    color: #444;
+		    font-size: 14px;
+		    padding: 0 50px;
+		    height: 100%; 
+		    display: table-cell;
+		    vertical-align: middle;
+		    position: relative;
+		    color:#444;
+		    transition:all .3s ease-in-out;
+		}
+		.tab__nav__link:hover,
+		.tab__nav__link.active {
+		    text-decoration:none;
+		    color:#ec0000;
+		}
+		.tab__nav__link:after{
+		    content:"";
+		    width:0;
+		    display:block;
+		    height:3px;
+		    background:#ec0101;
+		    position:absolute;
+		    margin:0 auto;
+		    bottom:0;
+		    left:0;
+		    right:0;
+		    transition:all .3s ease-in-out;
+		} 
+		.tab__nav__link.active:after{
+		    width:70%;
+		}
+		.tab__content{
+		    padding:30px;
+		    text-align:left;
+		    display:none;
+		}
+		.tab__content.active{
+		    display:block;
+		}
+	</style>
+</head>
+<body> 
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="tab">
+					<div class="tab__nav">
+						<a class="tab__nav__link" data-tab="uno">Tab 1</a> 
+						<a class="tab__nav__link" data-tab="dos">Tab 2</a> 
+						<a class="tab__nav__link" data-tab="tres">Tab 3</a> 
+						<a class="tab__nav__link" data-tab="cuatro">Tab 4<</a> 
+					</div>
+					<div class="tab__content" id="uno">
+						<p>Contenido 1</p>
+					</div>
+					<div class="tab__content" id="dos">
+						<p>Contenido 2</p>
+					</div>
+					<div class="tab__content" id="tres">
+						<p>Contenido 3</p>
+					</div>
+					<div class="tab__content" id="cuatro">
+						<p>Contenido 4</p>
+				</div> 
+			</div> 
+		</div>
+	</div>
+	<script type="text/javascript">
+		const tabLink = document.querySelectorAll('.tab__nav__link');
+		const tabContent = document.querySelectorAll('.tab__content');
+
+		for(i=0;i<tabContent.length;i++){
+			console.log(tabContent);
+		}
+
+		document.addEventListener('DOMContentLoaded', listeners); 
+
+		function listeners () { 
+			for(i=0;i<tabLink.length;i++){
+				tabLink[i].addEventListener('click', tab); 
+			}
+			tabLink[0].classList.add('active');
+			tabContent[0].classList.add('active');
+		}
+
+		function tab(e){
+
+			for(i=0;i<tabLink.length;i++){
+				tabLink[i].classList.remove('active');
+			}
+
+			e.target.classList.add('active');
+
+			let dataTab = e.target.getAttribute('data-tab');
+
+			for(i=0;i<tabContent.length;i++){
+				tabContent[i].classList.remove('active');
+			}
+
+			let idTab = document.getElementById(dataTab); 
+			idTab.classList.add('active');
+
+		}
+	</script>	
+</body>
+</html>
